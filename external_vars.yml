@@ -1,0 +1,9 @@
+---
+# Directory where image tar files will be copied to: 
+imagedir: 
+
+# LXC Path (For example: /snap/bin/lxc)
+lxcpath: 
+
+# Directory to store images that have been imported 
+oldimagepath: 
