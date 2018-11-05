@@ -15,11 +15,11 @@
       shell: "{{ lxcpath }} image import {{ item.path }} --alias {{ item.path | basename | regex_replace('.tar.gz') }} --public"
       with_items: "{{ images_to_import.files }}"
 
-    - name: Make sure old_images dir exists
+    - name: Make sure old images dir exists
       file:
         path: "{{ oldimagepath }}"
         state: directory
 
-    - name: Move import images to old_images
+    - name: Move import images to old images
       shell: mv "{{ item.path }}" "{{ oldimagepath }}"
       with_items: "{{ images_to_import.files }}"
