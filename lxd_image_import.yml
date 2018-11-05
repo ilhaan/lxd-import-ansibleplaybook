@@ -1,0 +1,25 @@
+---
+
+- hosts: 127.0.0.1
+  connection: local
+  vars_files:
+    - external_vars.yml
+  tasks:
+    - name: Check directory for .tar.gz files
+      find:
+        path: "{{ imagedir }}"
+        patterns: '*.tar.gz'
+      register: images_to_import
+
+    - name: Import images to LXD
+      shell: "{{ lxcpath }} image import {{ item.path }} --alias {{ item.path | basename | regex_replace('.tar.gz') }} --public"
+      with_items: "{{ images_to_import.files }}"
+
+    - name: Make sure old_images dir exists
+      file:
+        path: "{{ oldimagepath }}"
+        state: directory
+
+    - name: Move import images to old_images
+      shell: mv "{{ item.path }}" "{{ oldimagepath }}"
+      with_items: "{{ images_to_import.files }}"
