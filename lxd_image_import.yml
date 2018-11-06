@@ -10,6 +10,9 @@
         path: "{{ imagedir }}"
         patterns: '*.tar.gz'
       register: images_to_import
+    
+    - meta: end_play
+      when: images_to_import.files.0 is not defined
 
     - name: Import images to LXD
       shell: "{{ lxcpath }} image import {{ item.path }} --alias {{ item.path | basename | regex_replace('.tar.gz') }} --public"
