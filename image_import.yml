@@ -1,6 +1,8 @@
 ---
 - name: Import images to LXD
   shell: "{{ lxcpath }} image import {{ item.path }} --alias {{ item.path | basename | regex_replace('.tar.gz') }} --public"
+  #register: lxc_import_output
+  ignore_errors: yes # lxc import command results in weird erorrs that are not true, for example sometimes when an image is imported successfully an error message is returned. 
 
 - name: Make sure old images dir exists
   file:
