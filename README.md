@@ -18,3 +18,4 @@ ansible-playbook lxd_image_import.yml
 Please note the following: 
 * This playbook has only been tested on Ubuntu 16.04 & Ubuntu 18.04 with Ansible 2,7 installed using `pip install ansible`. 
 * Currently, there is no error checking in the [LXD image import step](https://github.com/ilhaan/lxd-import-ansibleplaybook/blob/6ff23d321d6d53550fec5bc29677b54f569ef068/lxd_image_import.yml#L14). If an error occurs when multiple image tar files exist in `imagedir`, some images may not be imported as the playbook will halt execution. 
+* It is assumed that tar image files will be be copied to `imagedir` using something like `rsync` which [creates a temporary file](https://rsync.samba.org/how-rsync-works.html) in a different location before moving the completed file to the destination directory. The playbook does not check to see if a tar file is still being written to before performing the image import. 
