@@ -13,3 +13,8 @@ After the variables above have been set, run the playbook using:
 ```
 ansible-playbook lxd_image_import.yml
 ```
+
+## Notes
+Please note the following: 
+* This playbook has only been tested on Ubuntu 16.04 & Ubuntu 18.04 with Ansible 2,7 installed using `pip install ansible`. 
+* Currently, there is no error checking in the LXD image import step. If an error occurs when multiple image tar files exist in `imagedir`, some images may not be imported as the playbook will halt execution. 
