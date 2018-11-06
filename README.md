@@ -17,4 +17,4 @@ ansible-playbook lxd_image_import.yml
 ## Notes
 Please note the following: 
 * This playbook has only been tested on Ubuntu 16.04 & Ubuntu 18.04 with Ansible 2,7 installed using `pip install ansible`. 
-* Currently, there is no error checking in the LXD image import step. If an error occurs when multiple image tar files exist in `imagedir`, some images may not be imported as the playbook will halt execution. 
+* Currently, there is no error checking in the [LXD image import step](https://github.com/ilhaan/lxd-import-ansibleplaybook/blob/6ff23d321d6d53550fec5bc29677b54f569ef068/lxd_image_import.yml#L14). If an error occurs when multiple image tar files exist in `imagedir`, some images may not be imported as the playbook will halt execution. 
