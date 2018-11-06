@@ -1,0 +1,11 @@
+---
+- name: Import images to LXD
+  shell: "{{ lxcpath }} image import {{ item.path }} --alias {{ item.path | basename | regex_replace('.tar.gz') }} --public"
+
+- name: Make sure old images dir exists
+  file:
+    path: "{{ oldimagepath }}"
+    state: directory
+
+- name: Move import images to old images
+  shell: mv "{{ item.path }}" "{{ oldimagepath }}"
